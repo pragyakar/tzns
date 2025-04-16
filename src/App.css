@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap");
+
+.App {
+  padding-top: 30px;
+  background: linear-gradient(135deg, #0f0f10 0%, #1a0f2f 50%, #0a1735 100%);
+  min-height: 100vh;
+  color: white;
+}
+
+.tzns-logo {
+  text-align: center;
+  font-family: "Bigshot One";
+  font-size: 50pt;
+  margin: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 50vh;
+  align-content: center;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+  padding: 1.5rem;
+  border-radius: 8px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 0.5rem;
+  height: 150px;
+  backdrop-filter: blur(8px); /* Stronger blur for glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border for definition */
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+}
+
+.card .time {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+}
+
+.card .date {
+  font-size: 1rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.time-input {
+  margin: 20px auto;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  background: white;
+  color: #282c34;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  display: block;
+}
+
+.time-input::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(268.74deg, #f09 2.01%, #f90 99.57%);
+  border-radius: 6px;
+  z-index: -1;
+}
+
+.time-input:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.time-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it appears above other elements */
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  background: #1a1a2e;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: relative;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+
+.modal-content h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.modal-content p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #f90; /* Highlight color on hover */
+}
+
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
+  backdrop-filter: blur(8px); /* Stronger blur for glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.floating-cta:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow on hover */
+}
+
+.date-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.calendar-picker {
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+  padding: 0.5rem;
+  border-radius: 8px; /* Slightly more rounded corners */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 0.5rem;
+  height: auto; /* Adjusted to fit content */
+  backdrop-filter: blur(8px); /* Stronger blur for glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  width: 250px;
+  border: 0.5px solid #fff; 
+  font-size: 17px;
+}
+
+.timezone-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timezone-picker {
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+  padding: 0.5rem;
+  border-radius: 8px; /* Slightly more rounded corners */
+  text-align: center;
+  display: block; /* Changed from flex to block */
+  color: #fff;
+  margin: 0.5rem;
+  height: auto; /* Adjusted to fit content */
+  backdrop-filter: blur(8px); /* Stronger blur for glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  width: 270px; /* Adjusted to fit content */
+  font-size: 17px;
+  border: 0.5px solid #fff; 
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  backdrop-filter: blur(8px); /* Glass effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+}
+
+.close-button::before {
+  content: "×"; /* Close icon */
+  font-size: 1.5rem;
+  font-weight: bold;
+}
