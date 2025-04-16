@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  ![tzns logo](logo.png)
+  <img src="logo.png"/>
   <br>
 </h1>
 
