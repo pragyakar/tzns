@@ -2,6 +2,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { timezones } from "../constants/timezones";
+import { fromZonedTime } from "date-fns-tz";
 
 interface ISchedulingAssistantProps {
   onClose: () => void;
@@ -10,7 +11,7 @@ interface ISchedulingAssistantProps {
 
 const SchedulingAssistant = (props: ISchedulingAssistantProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [selectedTimezone, setSelectedTimezone] = useState<string>("UTC");
+  const [selectedTimezone, setSelectedTimezone] = useState<string>("America/Los_Angeles"); // Default to Seattle
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -24,7 +25,9 @@ const SchedulingAssistant = (props: ISchedulingAssistantProps) => {
 
   const handleSave = () => {
     if (selectedDate) {
-      const utcDateString = selectedDate.toUTCString();
+      // Convert the selected date/time from the selected timezone to UTC
+      const utcDate = fromZonedTime(selectedDate, selectedTimezone);
+      const utcDateString = utcDate.toUTCString();
       props.setBaseTime(utcDateString);
     }
     props.onClose();
@@ -51,6 +54,7 @@ const SchedulingAssistant = (props: ISchedulingAssistantProps) => {
             onChange={handleTimezoneChange}
             className="timezone-picker"
           >
+            <option value="UTC">UTC</option>
             {timezones.map((tz) => (
               <option key={tz.timezone} value={tz.timezone}>
                 {tz.city} ({tz.timezone})
