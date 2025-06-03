@@ -11,7 +11,9 @@ interface ISchedulingAssistantProps {
 
 const SchedulingAssistant = (props: ISchedulingAssistantProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [selectedTimezone, setSelectedTimezone] = useState<string>("America/Los_Angeles"); // Default to Seattle
+  const [selectedTimezone, setSelectedTimezone] = useState<string>(
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  );
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
